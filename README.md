@@ -2,6 +2,22 @@
 
 > A GitHub Integration built with [probot](https://github.com/probot/probot) that validates new branches meet criteria and reports on branches that can be cut down.
 
+## Goals for Project
+
+- [ ] Arborist starts properly
+- [ ] Arborist reads the config file
+- [ ] Arborist catches events where a branch is created
+- [ ] Arborist validates the branch against the configuration setting
+- [ ] Arborist creates an issue for a branch that doesn't meet naming convention
+- [ ] Arborist updates existing issue for any new branches that don't meet naming convention
+- [ ] Arborist creates an issue for Pull Request that is closed, but the branch hasn't been deleted
+- [ ] Arborist creates an issue for Pull Request that is merged, but the branch hasn't been deleted
+- [ ] Arborist updates existing issue for any Pull Requests that are closed, but the branch hasn't been deleted
+- [ ] Arborist updates existing issue for any Pull Requests that are merged, but the branch hasn't been deleted
+- [ ] Add support for Arborist deleting branches based on configuration setting. (Currently, [node-gtthub](https://mikedeboer.github.io/node-github/) doesn't support deleting branches
+- [ ] Arborist monitors created issues for any that get closed/completed.
+- [ ] Arborist creates new issues when conditions are met after previous issues are closed.
+
 ## Setup
 
 ```
