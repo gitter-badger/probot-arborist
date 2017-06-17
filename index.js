@@ -7,10 +7,10 @@ module.exports = (robot) => {
     var payload = context.payload;
 
     if ( payload.ref_type === 'branch' ) {
-      robot.log(context);
+      console.log(context);
     }
 
-  }
+  })
   // If the branch does not meet naming standard, then create an issue listing that branch
   // Track any issues created and whether they get closed/completed. If so, create a new one.
 

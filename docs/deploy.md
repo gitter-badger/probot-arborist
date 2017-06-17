@@ -4,4 +4,7 @@ If you would like to run your own instance of this plugin, see the [docs for dep
 
 This plugin requires these **Permissions & events** for the GitHub Integration:
 
-> **TODO**: List permissions required for deployment here. See [mcmahonjohn/probot-arborist](https://github.com/mcmahonjohn/arborist/blob/master/docs/deploy.md) for an example.
+> List permissions required for deployment here.
+
+* Repository Contents
+  * Create (Read Only)
