@@ -6,8 +6,7 @@
   "license": "ISC",
   "repository": "https://github.com/mcmahonjohn/probot-arborist.git",
   "scripts": {
-    "start": "probot run ./index.js",
-    "test": "mocha && xo --extend probot"
+    "start": "probot run ./index.js"
   },
   "dependencies": {
     "probot": "~0.6.0"
