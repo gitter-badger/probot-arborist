@@ -4,9 +4,10 @@
 
 ## Goals for Project
 
-- [ ] Arborist starts properly
+- [X] Arborist starts properly
 - [ ] Arborist reads the config file
-- [ ] Arborist catches events where a branch is created
+- [X] Arborist catches events where a branch is created
+- [ ] Arborist catches events when an issue is created by the bot
 - [ ] Arborist validates the branch against the configuration setting
 - [ ] Arborist creates an issue for a branch that doesn't meet naming convention
 - [ ] Arborist updates existing issue for any new branches that don't meet naming convention
