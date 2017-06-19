@@ -9,7 +9,7 @@
 - [X] Arborist catches events where a branch is created
 - [ ] Arborist catches events when an issue is created by the bot
 - [ ] Arborist validates the branch against the configuration setting
-- [ ] Arborist creates an issue for a branch that doesn't meet naming convention
+- [X] Arborist creates an issue for a branch that doesn't meet naming convention
 - [ ] Arborist updates existing issue for any new branches that don't meet naming convention
 - [ ] Arborist creates an issue for Pull Request that is closed, but the branch hasn't been deleted
 - [ ] Arborist creates an issue for Pull Request that is merged, but the branch hasn't been deleted
@@ -39,6 +39,8 @@ A `.github/branch.yml` file is required to enable the plugin. The file can be em
 ```yml
 # Configuration for probot-arborist - https://github.com/mcmahonjohn/arborist
 
+# Name of the account used for the bot
+botName: probot
 # Regular expression pattern for new branch names must meet
 branchNamePattern: [a-zA-Z-_]
 # Number of days after a Pull Request was closed before branch should be deleted

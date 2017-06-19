@@ -6,5 +6,6 @@ This plugin requires these **Permissions & events** for the GitHub Integration:
 
 > List permissions required for deployment here.
 
-* Repository Contents
-  * Create (Read Only)
+* **Read** access to code
+* **Read** access to metadata
+* **Read** and **Write** access to issues
