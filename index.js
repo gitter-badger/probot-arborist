@@ -16,7 +16,6 @@ module.exports = function (robot) {
     var payload = context.payload;
 
     if ( payload.ref_type === 'branch' ) {
-      console.log("caught branch");
 
       var branchName = payload.ref;
       var branchNameRules = "[a-zA-Z-_][0-9]";  // TODO: Need to pull from configuration file
@@ -36,6 +35,14 @@ module.exports = function (robot) {
       }
     }
 
+  })
+
+  robot.on('issues.opened', async context => {
+    var payload = context.payload;
+
+    if (payload.issue.title === branchNameIssueTemplate.title) {
+      botCreatedIssues.push(payload.issue);
+    }
   })
   // If the branch does not meet naming standard, then create an issue listing that branch
   // Track any issues created and whether they get closed/completed. If so, create a new one.
