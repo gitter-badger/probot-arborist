@@ -12,12 +12,20 @@ module.exports = function (robot) {
 
   var botCreatedIssues = [];
 
+  var recordOpenedBotRelatedIssueProcess = function (context) {
+    var openedIssuesPayload = context.payload;
+
+    if (openedIssuesPayload.issue.title === branchNameIssueTemplate.title) {
+      botCreatedIssues.push(openedIssuesPayload.issue);
+    }
+  };
+
   robot.on('create', async context => {
-    var payload = context.payload;
+    var createPayload = context.payload;
 
-    if ( payload.ref_type === 'branch' ) {
+    if ( createPayload.ref_type === 'branch' ) {
 
-      var branchName = payload.ref;
+      var branchName = createPayload.ref;
       var branchNameRules = "[a-zA-Z-_][0-9]";  // TODO: Need to pull from configuration file
 
       var isBranchValid = branchName.match(branchNameRules);
@@ -26,7 +34,7 @@ module.exports = function (robot) {
         if (botCreatedIssues.length === 0) {
           var newIssue = branchNameIssueTemplate;
           newIssue.body = newIssue.body + "* " + branchName;
-          newIssue.repo = payload.repository.name;
+          newIssue.repo = createPayload.repository.name;
 
           context.github.issues.create(newIssue);
         } else {
@@ -38,12 +46,35 @@ module.exports = function (robot) {
   })
 
   robot.on('issues.opened', async context => {
-    var payload = context.payload;
+    recordOpenedBotRelatedIssueProcess(context);
+  })
 
-    if (payload.issue.title === branchNameIssueTemplate.title) {
-      botCreatedIssues.push(payload.issue);
+  robot.on('issues.edited', async context => {
+    var editedIssuesPayload = context.payload;
+
+    if (editedIssuesPayload.issue.title === branchNameIssueTemplate.title) {
+      // Do something?
     }
   })
-  // If the branch does not meet naming standard, then create an issue listing that branch
+
+  robot.on('issues.closed', async context => {
+    var closedIssuePayload = context.payload;
+    var caughtIssueId = closedIssuePayload.ref;
+
+    if (closedIssuePayload.issue.title === branchNameIssueTemplate.title) {
+      for (var i = 0; i <= botCreatedIssues.length; i++) {
+        var currentIssueId = botCreatedIssues[i].ref;
+
+        if (caughtIssueId === currentIssueId) {
+          // TODO;
+        }
+      }
+    }
+  })
+
+  robot.on('issues.reopened', async context => {
+    recordOpenedBotRelatedIssueProcess(context);
+  })
+
   // Track any issues created and whether they get closed/completed. If so, create a new one.
 };
